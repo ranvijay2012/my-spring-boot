@@ -1,7 +1,8 @@
 package com.spring.boot;
 
 import com.spring.boot.dto.Employee;
-import com.spring.boot.repository.EmployeeDao;
+import com.spring.boot.dto.EmployeeDao;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Hello world!
  *
  */
+@Slf4j
 @SpringBootApplication
 public class SpringBootApp implements CommandLineRunner {
 
@@ -19,7 +21,7 @@ public class SpringBootApp implements CommandLineRunner {
 
     public static void main( String[] args ) {
         SpringApplication.run(SpringBootApp.class);
-        System.out.println( "Hello Your SpringBootApp has Initialize!" );
+        log.info( "Hello Your SpringBootApp has Initialize!" );
     }
 
     @Override

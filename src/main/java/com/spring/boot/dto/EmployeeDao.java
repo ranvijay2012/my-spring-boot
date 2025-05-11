@@ -1,6 +1,5 @@
-package com.spring.boot.repository;
+package com.spring.boot.dto;
 
-import com.spring.boot.dto.Employee;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
