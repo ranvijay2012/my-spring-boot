@@ -1,7 +1,7 @@
 package com.spring.boot.service;
 
 import com.spring.boot.dto.Employee;
-import com.spring.boot.repository.EmployeeDao;
+import com.spring.boot.dto.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
