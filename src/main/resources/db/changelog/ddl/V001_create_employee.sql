@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS EMPLOYEE (
+	EMP_ID int NOT NULL,
+    EMP_NAME varchar(255),
+    EMP_SEX varchar(255),
+    PRIMARY KEY (EMP_ID)
+)

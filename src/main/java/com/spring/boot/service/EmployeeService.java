@@ -1,16 +1,16 @@
 package com.spring.boot.service;
 
 
-import com.spring.boot.dto.Employee;
+import com.spring.boot.entity.EmployeeEntity;
 
 import java.util.List;
 
 public interface EmployeeService {
-    List<Employee> getEmployees();
+    List<EmployeeEntity> getEmployees();
 
-    com.spring.boot.dto.Employee getEmployee(Integer empId);
+    EmployeeEntity getEmployee(Long empId);
 
-    Employee saveEmployee(Employee employee);
+    EmployeeEntity saveEmployee(EmployeeEntity employee);
 
-    boolean deleteEmployee(Integer empId);
+    void deleteEmployee(Long empId);
 }
