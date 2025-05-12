@@ -1,12 +1,12 @@
 package com.spring.boot;
 
-import com.spring.boot.dto.Employee;
-import com.spring.boot.dto.EmployeeDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Hello world!
@@ -14,10 +14,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @Slf4j
 @SpringBootApplication
+@EntityScan(basePackages = "com.spring.boot")
+@EnableJpaRepositories
 public class SpringBootApp implements CommandLineRunner {
-
-    @Autowired
-    private EmployeeDao employeeDao;
 
     public static void main( String[] args ) {
         SpringApplication.run(SpringBootApp.class);
@@ -26,8 +25,6 @@ public class SpringBootApp implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        employeeDao.setEmployee(new Employee(1, "Neeraj"));
-        employeeDao.setEmployee(new Employee(2,"Shweta"));
-        employeeDao.setEmployee(new Employee(3,"Ditya"));
+        log.info("--------------------------------");
     }
 }
