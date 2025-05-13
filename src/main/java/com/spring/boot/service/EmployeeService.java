@@ -1,16 +1,17 @@
 package com.spring.boot.service;
 
 
-import com.spring.boot.entity.EmployeeEntity;
+import com.spring.boot.exception.ApplicationException;
+import com.spring.boot.service.dto.EmployeeDto;
 
 import java.util.List;
 
 public interface EmployeeService {
-    List<EmployeeEntity> getEmployees();
+    List<EmployeeDto> getEmployees();
 
-    EmployeeEntity getEmployee(Long empId);
+    EmployeeDto getEmployee(Long empId);
 
-    EmployeeEntity saveEmployee(EmployeeEntity employee);
+    EmployeeDto saveEmployee(EmployeeDto employeeDto) throws ApplicationException;
 
     void deleteEmployee(Long empId);
 }

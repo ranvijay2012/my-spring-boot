@@ -1,7 +1,7 @@
 package com.spring.boot.controller;
 
-import com.spring.boot.dto.AuthenticationRequest;
-import com.spring.boot.entity.User;
+import com.spring.boot.service.dto.AuthenticationRequest;
+import com.spring.boot.repository.entity.User;
 import com.spring.boot.repository.UserRepository;
 import com.spring.boot.service.CustomUserDetailsService;
 import com.spring.boot.utility.JwtUtil;
