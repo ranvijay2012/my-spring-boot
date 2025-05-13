@@ -1,10 +1,11 @@
 package com.spring.boot.controller;
 
 import com.spring.boot.constant.SuccessDetails;
-import com.spring.boot.dto.ResponseDto;
-import com.spring.boot.entity.EmployeeEntity;
 import com.spring.boot.exception.ApplicationException;
+import com.spring.boot.repository.entity.Employee;
 import com.spring.boot.service.EmployeeService;
+import com.spring.boot.service.dto.EmployeeDto;
+import com.spring.boot.service.dto.ResponseDto;
 import com.spring.boot.utility.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,9 @@ public class AppController {
     @Autowired
     private ResponseUtil responseUtil;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     @GetMapping()
     @Operation(summary = "Welcome method")
     public String getWelcome() {
@@ -31,33 +35,30 @@ public class AppController {
         return "Welcome to practice on spring-boot";
     }
 
-    @Autowired
-    private EmployeeService employeeService;
-
     @GetMapping("/employees")
 //    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Get all employees list from DB")
     public ResponseEntity<ResponseDto<?>> getEmployees() {
-        log.info("Get all employees list from DB");
-        List<EmployeeEntity> employees = employeeService.getEmployees();
-        return responseUtil.getSuccessResponseWithDataDto(employees, SuccessDetails.EMPLOYEE_LIST_GET_SUCCESSFULLY);
+        log.info("Get all employeeDtos list from DB");
+        List<EmployeeDto> employeeDtos = employeeService.getEmployees();
+        return responseUtil.getSuccessResponseWithDataDto(employeeDtos, SuccessDetails.EMPLOYEE_LIST_GET_SUCCESSFULLY);
     }
 
     @GetMapping("/employee/{empId}")
     @Operation(summary = "Get only employee from DB with id")
     public ResponseEntity<ResponseDto<?>> getEmployee(@PathVariable("empId") Long empId) {
-        log.info("Get only employee from DB with id: {}", empId);
-        EmployeeEntity employee = employeeService.getEmployee(empId);
-        return responseUtil.getSuccessResponseWithDataDto(employee, SuccessDetails.EMPLOYEE_GET_SUCCESSFULLY);
+        log.info("Get only employeeDto from DB with id: {}", empId);
+        EmployeeDto employeeDto = employeeService.getEmployee(empId);
+        return responseUtil.getSuccessResponseWithDataDto(employeeDto, SuccessDetails.EMPLOYEE_GET_SUCCESSFULLY);
     }
 
     @PostMapping("/employee")
 //    @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Save employee in DB")
-    public ResponseEntity<ResponseDto<?>> saveEmployee(@RequestBody EmployeeEntity employee) throws ApplicationException {
-        log.info("Save employee in DB employee is: {}", employee);
-        EmployeeEntity employeeEntity = employeeService.saveEmployee(employee);
-        return responseUtil.getSuccessResponseWithDataDto(employeeEntity, SuccessDetails.EMPLOYEE_SAVED_SUCCESSFULLY);
+    @Operation(summary = "Save employeeDto in DB")
+    public ResponseEntity<ResponseDto<?>> saveEmployee(@RequestBody EmployeeDto employeeDto) throws ApplicationException {
+        log.info("Save employeeDto in DB employeeDto is: {}", employeeDto);
+        EmployeeDto employeeDto1 = employeeService.saveEmployee(employeeDto);
+        return responseUtil.getSuccessResponseWithDataDto(employeeDto1, SuccessDetails.EMPLOYEE_SAVED_SUCCESSFULLY);
     }
 
     @DeleteMapping("/employee/{empId}")

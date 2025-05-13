@@ -1,4 +1,4 @@
-package com.spring.boot.dto;
+package com.spring.boot.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

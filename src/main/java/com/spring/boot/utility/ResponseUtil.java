@@ -2,10 +2,9 @@ package com.spring.boot.utility;
 
 import com.spring.boot.constant.ErrorDetails;
 import com.spring.boot.constant.SuccessDetails;
-import com.spring.boot.dto.ErrorDto;
-import com.spring.boot.dto.ResponseDto;
-import com.spring.boot.dto.SuccessDto;
-import org.springframework.http.HttpStatus;
+import com.spring.boot.service.dto.ErrorDto;
+import com.spring.boot.service.dto.ResponseDto;
+import com.spring.boot.service.dto.SuccessDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 

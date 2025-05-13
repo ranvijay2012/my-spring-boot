@@ -8,7 +8,7 @@ public enum SuccessDetails {
     EMPLOYEE_LIST_GET_SUCCESSFULLY(HttpStatus.OK, "001", "Employee list get successfully"),
     EMPLOYEE_GET_SUCCESSFULLY(HttpStatus.OK, "002", "Employee get successfully"),
     EMPLOYEE_SAVED_SUCCESSFULLY(HttpStatus.CREATED, "003", "Employee saved successfully"),
-    EMPLOYEE_DELETED_SUCCESSFULLY(HttpStatus.NO_CONTENT, "004", "Employee deleted successfully");
+    EMPLOYEE_DELETED_SUCCESSFULLY(HttpStatus.ACCEPTED, "004", "Employee deleted successfully");
 
     private final String code;
     private final String message;

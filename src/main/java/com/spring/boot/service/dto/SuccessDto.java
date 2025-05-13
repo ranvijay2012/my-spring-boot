@@ -1,11 +1,8 @@
-package com.spring.boot.dto;
+package com.spring.boot.service.dto;
 
-import com.spring.boot.entity.EmployeeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor

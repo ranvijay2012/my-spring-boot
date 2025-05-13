@@ -1,10 +1,12 @@
 package com.spring.boot.service.impl;
 
 import com.spring.boot.constant.ErrorDetails;
-import com.spring.boot.entity.EmployeeEntity;
+import com.spring.boot.repository.entity.Employee;
 import com.spring.boot.exception.ApplicationException;
 import com.spring.boot.repository.EmployeeRepository;
 import com.spring.boot.service.EmployeeService;
+import com.spring.boot.service.adopter.EmployeeAdopter;
+import com.spring.boot.service.dto.EmployeeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,29 +19,36 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
+    private EmployeeAdopter employeeAdopter;
+
+    @Autowired
     private EmployeeRepository employeeRepository;
 
     @Override
-    public List<EmployeeEntity> getEmployees() {
-        return employeeRepository.findAll();
+    public List<EmployeeDto> getEmployees() {
+        List<Employee> employees = employeeRepository.findAll();
+        List<EmployeeDto> employeeDtos = employeeAdopter.mapOneTypeListToAnotherType(employees, EmployeeDto.class);
+        return employeeDtos;
     }
 
     @Override
-    public EmployeeEntity getEmployee(Long empId) {
-        Optional<EmployeeEntity> optionalEmployee = employeeRepository.findById(empId);
-        return optionalEmployee.orElseGet(EmployeeEntity::new);
+    public EmployeeDto getEmployee(Long empId) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(empId);
+        Employee employee = optionalEmployee.orElseGet(Employee::new);
+        return (EmployeeDto) employeeAdopter.mapOneObjectToAnother(employee, EmployeeDto.class);
     }
 
     @Override
-    public EmployeeEntity saveEmployee(EmployeeEntity employee) throws ApplicationException {
-        log.info("Now going to save data is: {}", employee);
+    public EmployeeDto saveEmployee(EmployeeDto employeeDto) throws ApplicationException {
+        log.info("Now going to save data is: {}", employeeDto);
+        Employee employee = (Employee) employeeAdopter.mapOneObjectToAnother(employeeDto, Employee.class);
         try {
             employee = employeeRepository.save(employee);
         } catch (Exception ex) {
             log.error("Employee data could not be save due to {}", ex.getMessage());
             throw new ApplicationException(ErrorDetails.EMPLOYEE_DATA_UNABLE_TO_SAVE, ex);
         }
-        return employee;
+        return (EmployeeDto) employeeAdopter.mapOneObjectToAnother(employee, EmployeeDto.class);
     }
 
     @Override

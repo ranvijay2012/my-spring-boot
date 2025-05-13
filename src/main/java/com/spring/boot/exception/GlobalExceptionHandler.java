@@ -1,7 +1,7 @@
 package com.spring.boot.exception;
 
 import com.spring.boot.constant.ErrorDetails;
-import com.spring.boot.dto.ResponseDto;
+import com.spring.boot.service.dto.ResponseDto;
 import com.spring.boot.utility.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
