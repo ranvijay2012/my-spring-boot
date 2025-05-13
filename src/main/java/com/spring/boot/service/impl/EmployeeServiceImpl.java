@@ -1,7 +1,8 @@
 package com.spring.boot.service.impl;
 
+import com.spring.boot.constant.ErrorDetails;
 import com.spring.boot.entity.EmployeeEntity;
-import com.spring.boot.exception.ResourceNotFoundException;
+import com.spring.boot.exception.ApplicationException;
 import com.spring.boot.repository.EmployeeRepository;
 import com.spring.boot.service.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,18 +31,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeEntity saveEmployee(EmployeeEntity employee) {
-        log.info("Now going to save data is: {}",employee);
-        try{
-            employeeRepository.save(employee);
-        } catch (Exception ex){
-            throw new ResourceNotFoundException(ex.getMessage());
+    public EmployeeEntity saveEmployee(EmployeeEntity employee) throws ApplicationException {
+        log.info("Now going to save data is: {}", employee);
+        try {
+            employee = employeeRepository.save(employee);
+        } catch (Exception ex) {
+            log.error("Employee data could not be save due to {}", ex.getMessage());
+            throw new ApplicationException(ErrorDetails.EMPLOYEE_DATA_UNABLE_TO_SAVE, ex);
         }
-        return employeeRepository.save(employee);
+        return employee;
     }
 
     @Override
     public void deleteEmployee(Long empId) {
-         employeeRepository.deleteById(empId);
+        employeeRepository.deleteById(empId);
     }
 }

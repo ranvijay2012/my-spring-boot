@@ -1,1 +1,11 @@
-INSERT INTO EMPLOYEE(emp_id, emp_name, emp_sex) VALUES(1, 'Ranvijay Singh', 'Male');
+INSERT INTO EMPLOYEE(emp_name,emp_sex) VALUES
+('Ranvijay Singh', 'Male'),
+('Shweta', 'Female'),
+('Ditya', 'Female'),
+('Dheeru Singh', 'Male'),
+('Gopu Singh', 'Male'),
+('Amar Singh', 'Male'),
+('Ram Shree', 'Female'),
+('Priya Sharma', 'Female'),
+('Amit Verma', 'Male'),
+('Sneha Patel', 'Female');
