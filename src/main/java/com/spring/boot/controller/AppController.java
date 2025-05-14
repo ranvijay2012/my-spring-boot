@@ -1,8 +1,8 @@
 package com.spring.boot.controller;
 
 import com.spring.boot.constant.SuccessDetails;
+import com.spring.boot.dataConfig.AddressServiceTemplateImpl;
 import com.spring.boot.exception.ApplicationException;
-import com.spring.boot.repository.entity.Employee;
 import com.spring.boot.service.EmployeeService;
 import com.spring.boot.service.dto.EmployeeDto;
 import com.spring.boot.service.dto.ResponseDto;
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("api")
+@RequestMapping("/api")
 public class AppController {
 
     @Autowired
@@ -26,12 +26,13 @@ public class AppController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private AddressServiceTemplateImpl addressService;
+
     @GetMapping()
     @Operation(summary = "Welcome method")
     public String getWelcome() {
-        log.info("INFO: This is an info message");
-        log.warn("WARN: This is a warning");
-        log.error("ERROR: Something went wrong");
+        log.info("This is an info message from address service: {}", addressService.getData());
         return "Welcome to practice on spring-boot";
     }
 
